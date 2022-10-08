@@ -13,8 +13,8 @@ services:
     depends_on:
       - db
     networks:
-      - external
-      - internal
+      - frontend
+      - backend
   db:
     image: postgres:14.4-alpine
     environment:
@@ -22,11 +22,11 @@ services:
     secrets:
       - pg_pass
     networks:
-      - internal
+      - backend
 networks:
-  internal:
-  external:
-    external: true
+  backend:
+    internal: true
+  frontend:
 secrets:
   pg_pass:
     file: ./my_secret.txt
